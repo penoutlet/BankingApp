@@ -27,6 +27,10 @@ public class PendingAccounts implements Serializable {
 		
 		public static void fetchAll(){
 			Set<String> keys = pendingAccounts.keySet();
+			if(pendingAccounts.isEmpty()) {
+				System.out.println("No pending accounts.");
+			}
+			
 			for(String u: keys) {
 				System.out.println("All Users");
 				System.out.println("Username: " + u);
@@ -70,7 +74,7 @@ public class PendingAccounts implements Serializable {
 		}
 		
 		public static Account createNewUser() {
-			
+			Account newAccount = null;
 			System.out.println("Enter a username.");
 //			sc.nextLine();
 			String username = sc.nextLine();
@@ -82,10 +86,24 @@ public class PendingAccounts implements Serializable {
 			String lastname = sc.nextLine();
 			System.out.println("Enter a balance");
 			double balance = sc.nextDouble();
-			Account newAccount = new Account(username,pw,balance,firstname,lastname);
-			System.out.println(newAccount.toString());
+			System.out.println("Joint account? 1 for yes, 2 for no.");
+			int joint = sc.nextInt();
+			switch(joint) {
+			case 1:
+				System.out.println("Enter a second username");
+				sc.nextLine();
+				String username2 = sc.nextLine();
+				newAccount = new Account(username,pw,balance,firstname,lastname,username2);
+				addOne(username2, newAccount); //adds an extra duplicate account as value
+				break;
+			case 2:
+				newAccount = new Account(username,pw,balance,firstname,lastname);
+				System.out.println(newAccount.toString());
+				log.info(newAccount.toString() + " account created... and is now pending");
+				System.out.println("Your account is pending.");
+				
+			}
 			log.info(newAccount.toString() + " account created... and is now pending");
-			System.out.println("Your account is pending.");
 			addOne(username, newAccount);
 			MainMenu.firstLoginMenu();
 			return newAccount;

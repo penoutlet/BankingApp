@@ -4,6 +4,7 @@ package items;
 public class Transaction {
 	public String action = "";
 	public double amount;
+	private Account a;
 	//write a method that takes in an action as a string as one parameter, and an amount as the second, that handles the following cases:
 		// depositing
 		/*
@@ -12,22 +13,12 @@ public class Transaction {
 		 * canceling - takes in no amount - this is a privilege that should belong to admin and customers only and not transactions
 		 * Transaction.sendTransaction(t);
 		 */
-	public static boolean sendTransaction(Transaction t) {
-		if(t.getAction().equals("deposit")){
-			
-			
-		}
-		else if(t.getAction().equals("withdraw")) {
-			
-		}
-		else if(t.getAction().equals("transfer")) {
-			
-		}
-	}
-	public Transaction(String action, double amount) {
+	
+	public Transaction(String action, double amount, Account a) {
 		// TODO Auto-generated constructor stub
 		this.action = action;
 		this.amount = amount;
+		this.a = a;
 	}
 	
 	

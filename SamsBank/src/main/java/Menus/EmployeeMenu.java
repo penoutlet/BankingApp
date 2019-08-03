@@ -31,25 +31,30 @@ public class EmployeeMenu {
 
 			switch (choice) {
 			case 1:
+				//view 1 approved
 				System.out.println("Enter a username");
 				sc.nextLine();
 				username += sc.nextLine();
 				account = ApprovedAccounts.fetchOne(username);
-				if (account != null) {
-					actionMenu();
-				} else {
+				if (account == null) {
 					System.out.println("No user found. ");
 					actionMenu();
-				}
+				} 
+				
 				flag = !flag;
 				break;
 			case 2:
+				//approve or deny
 				System.out.println("Enter a username");
 				sc.nextLine();
 				username += sc.nextLine();
-				System.out.println("username: " + username);
 				account = PendingAccounts.fetchOne(username);
-				EmployeeMenu.approveOrDenyMenu(account);
+				if(account != null) {
+					EmployeeMenu.approveOrDenyMenu(account);
+				}
+				System.out.println("No user found.");
+				actionMenu();
+				flag=!flag;
 				break;
 			case 3:
 				PendingAccounts.fetchAll();
@@ -74,11 +79,12 @@ public class EmployeeMenu {
 		switch (choice) {
 		case 1:
 			Employee.approve(a);
-			MainMenu.mainMenu();
-			;
+			actionMenu();
 			break;
 		case 2:
 			Employee.deny(a);
+			actionMenu();
+			break;
 		case 3:
 			MainMenu.mainMenu();
 			;

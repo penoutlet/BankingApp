@@ -3,19 +3,20 @@ package Menus;
 
 import java.util.Scanner;
 
+import items.Account;
 import items.ApprovedAccounts;
 import items.UtilityMenus;
 
 
 public class CustomerMenu  {
 	static Scanner sc = new Scanner(System.in);
-	private static String[] optionsArray = {"0. Apply for an account.", "1. Deposit", "2. Withdraw", "3. Transfer", "4. Cancel an Account","5. Return to previous menu"};
+	private static String[] optionsArray = {"0. View your account.", "1. Deposit", "2. Withdraw", "3. Transfer", "4. Cancel an Account","5. Return to previous menu"};
 	
 	public static void loginMenu() {
 		ApprovedAccounts.customerLogin();
 	}
 	
-	public static void actionMenu() {
+	public static void actionMenu(Account a) {
 		
 		System.out.println("Welcome customer, what would you like to do?");
 		
@@ -24,32 +25,35 @@ public class CustomerMenu  {
 		}
 		
 		int choice = sc.nextInt();
-		CustomerMenu.handleInput(choice);
+		CustomerMenu.handleInput(choice, a);
 		
 	}
 	
-	public static void handleInput(int choice) {
+	public static void handleInput(int choice, Account a) {
 		System.out.println("Choice was " + choice);
 		boolean flag = true;
 		while(flag) {
 			
 			switch(choice) {
 			case 0: 
-				
+				System.out.println(a.toString());
+				actionMenu(a);
+				flag=!flag;
+				break;
 			case 1: 
-				UtilityMenus.depositMenu();
+				UtilityMenus.depositMenu(a);
 				flag=!flag;
 				break;
 			case 2:
-				UtilityMenus.withdrawMenu();
+				UtilityMenus.withdrawMenu(a);
 				flag=!flag;
 				break;
 			case 3:
-				UtilityMenus.transferMenu();
+				UtilityMenus.transferMenu(a);
 				flag=!flag;
 				break;
 			case 4:
-				UtilityMenus.cancelAccount();
+				UtilityMenus.cancelMenu(a);
 				flag=!flag;
 				break;
 			case 5:
@@ -63,15 +67,4 @@ public class CustomerMenu  {
 			}
 		}
 	}
-	
-	public static void depositMenu() {
-		System.out.println("How much would you like to deposit? ");
-		double depositAmt = sc.nextDouble();
-		sc.next();
-		System.out.println("Deposited " + depositAmt);
-		CustomerMenu.actionMenu();
-//		Customer.deposit();
-	}
-	
-	
 }
