@@ -2719,3 +2719,9 @@
 2019-08-03 00:41:37 INFO  ApprovedAccounts:25 - Account [username=testp, password=testp, balance=10000.0, isApproved=false, username2=null, firstname=testp, lastname=testp] added to pending accounts.
 2019-08-03 00:41:57 INFO  Transaction:13 - testa deposited 100000.0
 2019-08-03 00:42:14 INFO  Transaction:19 - testa withdrew 10000.0
+2019-08-03 10:26:36 INFO  Employee:32 - sam was approved.
+2019-08-03 10:52:26 INFO  Employee:32 - deleteme was approved.
+2019-08-03 11:17:42 INFO  Transaction:13 - deleteme deposited 300111.0
+2019-08-03 11:28:39 INFO  Employee:32 - bill was approved.
+2019-08-03 11:34:08 INFO  Employee:32 - bill was approved.
+2019-08-03 13:12:43 INFO  Employee:32 - sam was approved.
